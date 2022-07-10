@@ -1,0 +1,11 @@
+.wrapper-content-row{
+  
+  width: 600px;
+}
+
+.wrapper-content{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
