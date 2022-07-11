@@ -1,27 +1,30 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { Layout } from "antd";
-import { Alert, Button, Space } from 'antd';
 import ContentComponent from "./component/Content/Content";
 import HeaderComponent from "./component/Header/Header";
 import FooterComponent from "./component/Footer/Footer";
+import { ModalContext } from "./context/ModalContext";
 import type * as CSS from "csstype";
 import "antd/dist/antd.css";
 import "./App.css";
-
 const { Content, Footer, Header } = Layout;
 
 const App: FC = () => {
+  const [isVisibility, setVisibility] = useState(false);
+
   return (
     <Layout>
       <Header style={headerStyle}>
         <HeaderComponent />
       </Header>
-      <Content style={contentStyle}>
-        <ContentComponent />
-      </Content>
-      <Footer style={footeStyle}>
-        <FooterComponent />
-      </Footer>
+      <ModalContext.Provider value={{ isVisibility, setVisibility }}>
+        <Content style={contentStyle}>
+          <ContentComponent />
+        </Content>
+        <Footer style={footeStyle}>
+          <FooterComponent />
+        </Footer>
+      </ModalContext.Provider>
     </Layout>
   );
 };

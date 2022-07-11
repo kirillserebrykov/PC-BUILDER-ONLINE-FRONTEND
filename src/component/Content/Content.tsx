@@ -3,14 +3,14 @@ import "antd/dist/antd.css";
 import {Row} from "antd";
 import "./Content.css";
 import ColumComponent from "./Row/Row";
+import ModalComponent from "./Modal/Modal";
 import type { RootState } from '../../redux/store'
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import {addItem, deleteItem} from "../../redux/itemAccessoriesSlice";
+import {useAppSelector } from "../../redux/hooks";
+
 
 
 const ContentComponent: FC = (): JSX.Element  => {
-  const NamesAccessories = useAppSelector((state: RootState) => state.NamesAccessories)
-  const dispatch = useAppDispatch()
+  const NamesAccessories = useAppSelector((state: RootState) => state.NamesСomponents)
   const Accessories =  NamesAccessories.map((el,i) => <ColumComponent key={i} name={el}/> )
 
   return (
@@ -18,8 +18,7 @@ const ContentComponent: FC = (): JSX.Element  => {
       <Row gutter={[0, 10]} className="wrapper-content-row">
         {Accessories}
       </Row>
-      <button onClick={() => dispatch(addItem("223"))}>add</button>
-      <button onClick={() => dispatch(deleteItem())}>delete</button>
+      <ModalComponent/>
     </div>
   );
 };

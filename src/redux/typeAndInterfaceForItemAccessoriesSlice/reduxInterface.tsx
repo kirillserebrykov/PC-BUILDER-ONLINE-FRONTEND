@@ -1,4 +1,4 @@
 
-export interface itemAccessoriesState {
-    NamesAccessories: Array<string>
+export interface СomponentsState {
+  NamesСomponents: Array<string>
   }
