@@ -1,38 +1,52 @@
-import React, { FC, useContext, useState} from "react";
+import React, { FC, useState } from "react";
 import "antd/dist/antd.css";
-import {Modal, Input } from "antd";
-import {useAppDispatch} from "../../../redux/hooks";
-import { ModalContext } from ".././../../context/ModalContext";
-import { addСomponent } from '.././../../redux/itemAccessoriesSlice'
+import { Modal, Input } from "antd";
+import "./Modal.css";
 
-const ModalComponent: FC = (): JSX.Element => {
-  const ModalVisibility = useContext(ModalContext);
-  const [value, setValue] = useState("")
-  const dispatch = useAppDispatch()
-  const handleCancel = () => ModalVisibility?.setVisibility(false)
+interface IModalComponent {
+  isVisibility?: boolean;
+  setVisibility: (value: boolean) => void;
+  addComponent: (value: string) => void;
+}
+
+
+
+
+const ModalComponent: FC<IModalComponent> = ({
+  isVisibility,
+  setVisibility,
+  addComponent,
+}: IModalComponent): JSX.Element => {
+  const [value, setValue] = useState("");
+  const handleCancel = () => setVisibility(false);
   const handleOk = () => {
-    if(value){
-      dispatch(addСomponent(value))
-      setValue("")
-      ModalVisibility?.setVisibility(false)
-      
+    if (value) {
+      addComponent(value);
+      setValue("");
+      setVisibility(false);
     }
-    
-  }
-  const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value)
+  };
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setValue(e.target.value);
+
   return (
     <Modal
-      title="Add new accessories"
-      visible={ModalVisibility && ModalVisibility.isVisibility}
-       onCancel={handleCancel} 
-       onOk={handleOk}
+      title="Add new component"
+      visible={isVisibility && isVisibility}
+      onCancel={handleCancel}
+      onOk={() => handleOk()}
     >
       <Input.Group compact style={{ display: "flex" }}>
-        <Input onChange={handleChange} value={value} defaultValue="" className="input-row" placeholder="Name" />
+        <Input
+          onChange={handleChange}
+          value={value}
+          defaultValue=""
+          className="input-row"
+          placeholder="Name"
+        />
       </Input.Group>
     </Modal>
   );
 };
 
 export default ModalComponent;
-

@@ -1,0 +1,24 @@
+.ant-btn-primary{
+    background-color: rgb(54, 79, 107);
+    border-color:rgb(54, 79, 107) ;
+}
+
+.ant-btn-default:hover{
+    color: rgb(54, 79, 107);
+}
+
+.ant-btn{
+    border-color:rgb(54, 79, 107) ;
+}
+.ant-btn:focus,
+.ant-btn:hover{
+    border-color:rgb(54, 79, 107) ;
+
+}
+
+.ant-btn-primary:hover,
+.ant-btn-primary:focus{
+    background-color: rgb(54, 79, 107);
+    border-color:rgb(54, 79, 107) ;
+
+}

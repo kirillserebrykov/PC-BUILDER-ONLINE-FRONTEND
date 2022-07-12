@@ -2,8 +2,8 @@ import React, { FC, ReactElement } from "react";
 import "antd/dist/antd.css";
 import {Row} from "antd";
 import "./Content.css";
-import ColumComponent from "./Row/Row";
-import ModalComponent from "./Modal/Modal";
+import ColumComponent from "./Row/Colum";
+import ModalComponentContainer from "./Modal/ModalComponentContainer";
 import type { RootState } from '../../redux/store'
 import {useAppSelector } from "../../redux/hooks";
 
@@ -18,7 +18,7 @@ const ContentComponent: FC = (): JSX.Element  => {
       <Row gutter={[0, 10]} className="wrapper-content-row">
         {Accessories}
       </Row>
-      <ModalComponent/>
+      <ModalComponentContainer/>
     </div>
   );
 };

@@ -13,15 +13,17 @@ const buttonStyle: CSS.Properties = {
 };
 const FooterComponent: FC = () => {
   const ModalVisibility = useContext(ModalContext);
-  const handleOpen = () => ModalVisibility?.setVisibility(true)
- return <>
-    <div className="wrapper-price">
-      <span>Price: 4000</span>
-    </div>
-    <Button onClick={handleOpen} ghost type="primary" style={buttonStyle}>
-      <span>+</span>
-    </Button>
-  </>
-}
+  const handleOpen = () => ModalVisibility?.setVisibility(true);
+  return (
+    <>
+      <div className="wrapper-price">
+        <span>Price: 4000</span>
+      </div>
+      <Button onClick={handleOpen} ghost type="primary" style={buttonStyle}>
+        <span>+</span>
+      </Button>
+    </>
+  );
+};
 
 export default FooterComponent;
