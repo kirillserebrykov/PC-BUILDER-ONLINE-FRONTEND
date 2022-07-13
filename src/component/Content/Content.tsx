@@ -10,13 +10,14 @@ import {useAppSelector } from "../../redux/hooks";
 
 
 const ContentComponent: FC = (): JSX.Element  => {
-  const NamesAccessories = useAppSelector((state: RootState) => state.NamesСomponents)
-  const Accessories =  NamesAccessories.map((el,i) => <ColumComponent key={i} name={el}/> )
+  const NamesСomponents = useAppSelector((state: RootState) => state.NamesСomponents)
+  console.log(NamesСomponents)
+  const Сomponents =  NamesСomponents.map((el,i) => <ColumComponent key={i} name={el}/> )
 
   return (
     <div className="wrapper-content">
       <Row gutter={[0, 10]} className="wrapper-content-row">
-        {Accessories}
+        {Сomponents}
       </Row>
       <ModalComponentContainer/>
     </div>

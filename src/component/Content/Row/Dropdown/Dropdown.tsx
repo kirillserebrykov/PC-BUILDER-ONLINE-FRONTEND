@@ -1,44 +1,50 @@
-import { Dropdown, Menu } from "antd";
 import React, { FC } from "react";
+import { Dropdown, Menu } from "antd";
 import "./Dropdown.css";
-import type * as CSS from "csstype";
+import { useAppDispatch } from "../../../../redux/hooks";
+import { deleteСomponent, renameСomponent  } from "../../../../redux/СomponentSlice";
+import { IPropsName } from "../../../../types/globalTypes";
 
-const resetCss: CSS.Properties = { background: "none", border: "none" };
-const menuDropdown: CSS.Properties = {
-  position: "relative",
-  left: "-60px",
-};
 
-const menu = (
-  <Menu
-    style={menuDropdown}
+const payload = {
+   1:"dsadas"
+}
+
+
+const MenuComponent:FC<IPropsName> = ({name}:IPropsName) =>{
+  const dispatch = useAppDispatch();
+
+  return <Menu
+    className="menu-dropdown"
     items={[
       {
         key: "1",
-        label: <button style={resetCss}>Rename</button>,
+        label: <button className="resetStyle" onClick={()=> dispatch(renameСomponent({fdfds:""}))}>Rename</button>,
       },
       {
         key: "2",
-        label: <button style={resetCss}>Delete</button>,
+        label: <button className="resetStyle" onClick={()=> dispatch(deleteСomponent(name))}>Delete</button>, 
       },
     ]}
   />
-);
+};
 
-const DropdownComponent: FC = () => {
+
+
+
+
+
+
+const DropdownComponent:FC<IPropsName> = ({name}:IPropsName) => {
+ 
   return (
-    <Dropdown overlay={menu} placement="bottomLeft">
-      <span style={spanDropdown}>...</span>
+    <Dropdown overlay={<MenuComponent name={name}/>} placement="bottomLeft">
+      <span  className="dropdown-span">...</span>
     </Dropdown>
   );
 };
 
 export default DropdownComponent;
 
-const spanDropdown: CSS.Properties = {
-  marginTop: "50px",
-  paddingRight: "20px",
-  marginLeft: "-30px",
-  fontSize: "15px",
-  cursor: "pointer",
-};
+
+

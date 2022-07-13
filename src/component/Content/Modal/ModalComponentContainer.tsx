@@ -2,7 +2,7 @@ import React, { FC, useContext } from "react";
 import "antd/dist/antd.css";
 import { useAppDispatch } from "../../../redux/hooks";
 import { ModalContext } from "../../../context/ModalContext";
-import { addСomponent } from "../../../redux/itemAccessoriesSlice";
+import { addСomponent } from "../../../redux/СomponentSlice";
 import ModalComponent from "./Modal";
 
 const ModalComponentContainer: FC = (): JSX.Element => {

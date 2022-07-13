@@ -1,6 +1,16 @@
-.dropdown-span{
-  margin-top: "50px";
-  padding-right: "20px";
-  margin-left: "-30px";
-  font-size: "15px";
+.resetStyle {
+  background: none;
+  border: none;
+  width: 100%;
+}
+.menu-dropdown {
+  position: relative;
+  left: -60px;
+}
+.dropdown-span {
+  font-size: 15px;
+  margin-top: 50px;
+  padding-right: 20px;
+  margin-left: -30px;
+  cursor: pointer;
 }
