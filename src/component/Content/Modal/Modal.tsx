@@ -6,7 +6,9 @@ import "./Modal.css";
 interface IModalComponent {
   isVisibility?: boolean;
   setVisibility: (value: boolean) => void;
-  addComponent: (value: string) => void;
+  ComponentHandler: (value: string) => void;
+  modalTitle:string
+
 }
 
 
@@ -15,13 +17,15 @@ interface IModalComponent {
 const ModalComponent: FC<IModalComponent> = ({
   isVisibility,
   setVisibility,
-  addComponent,
+  ComponentHandler,
+  modalTitle
 }: IModalComponent): JSX.Element => {
   const [value, setValue] = useState("");
   const handleCancel = () => setVisibility(false);
+
   const handleOk = () => {
     if (value) {
-      addComponent(value);
+      ComponentHandler(value);
       setValue("");
       setVisibility(false);
     }
@@ -29,9 +33,10 @@ const ModalComponent: FC<IModalComponent> = ({
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setValue(e.target.value);
 
+
   return (
     <Modal
-      title="Add new component"
+      title={modalTitle}
       visible={isVisibility && isVisibility}
       onCancel={handleCancel}
       onOk={() => handleOk()}

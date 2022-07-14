@@ -11,13 +11,14 @@ const { Content, Footer, Header } = Layout;
 
 const App: FC = () => {
   const [isVisibility, setVisibility] = useState(false);
-
+  const [typeModal, setTypeModal] = useState("");
+  const [renameComponent,setRenameComponent] = useState("");
   return (
     <Layout>
       <Header style={headerStyle}>
         <HeaderComponent />
       </Header>
-      <ModalContext.Provider value={{ isVisibility, setVisibility }}>
+      <ModalContext.Provider value={{ isVisibility, setVisibility, typeModal, setTypeModal, renameComponent,setRenameComponent }}>
         <Content style={contentStyle}>
           <ContentComponent />
         </Content>

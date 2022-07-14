@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import type { СomponentsState } from "./typeAndInterfaceСomponentSlice/reduxInterface";
+import type { СomponentsState,IRenameActions } from "./typeAndInterfaceСomponentSlice/reduxInterface";
 
 const initialState: СomponentsState = {
   NamesСomponents: ["GPU", "CPU", "ddasdas"],
@@ -9,13 +9,14 @@ const initialState: СomponentsState = {
 const ComponentHandler = (
   NamesСomponents: Array<string>,
   actionPayload: string,
-  type: string
+  type: string,
+  renameValue: string = ""
 ) => {
   return NamesСomponents.map((el, i) => {
     if (el === actionPayload) {
       if (type === "delete") return NamesСomponents.splice(i, 1);
       if (type === "rename") {
-        console.log(actionPayload)
+        NamesСomponents[i] = renameValue
       }
     }
   });
@@ -31,8 +32,8 @@ export const СomponentsSlice = createSlice({
     deleteСomponent: (state, action: PayloadAction<string>) => {
       ComponentHandler(state.NamesСomponents, action.payload, "delete");
     },
-    renameСomponent: (state, action: PayloadAction<string>) => {
-      ComponentHandler(state.NamesСomponents, action.payload, "rename");
+    renameСomponent: (state, action: PayloadAction<IRenameActions>) => {
+      ComponentHandler(state.NamesСomponents, action.payload.component, "rename", action.payload.renameValue);
     },
   },
 });

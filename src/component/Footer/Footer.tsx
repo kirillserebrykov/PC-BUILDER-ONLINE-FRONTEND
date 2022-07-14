@@ -13,7 +13,11 @@ const buttonStyle: CSS.Properties = {
 };
 const FooterComponent: FC = () => {
   const ModalVisibility = useContext(ModalContext);
-  const handleOpen = () => ModalVisibility?.setVisibility(true);
+  const handleOpen = () =>{ 
+    ModalVisibility?.setVisibility(true);
+    ModalVisibility?.setTypeModal("add")
+  }
+
   return (
     <>
       <div className="wrapper-price">
