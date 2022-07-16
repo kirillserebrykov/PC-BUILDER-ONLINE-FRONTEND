@@ -1,13 +1,14 @@
 import React, { FC } from "react";
 import "antd/dist/antd.css";
 import { Typography, Card, Space, Divider } from "antd";
+import { IResultComponent } from "../../../../types/globalTypes";
 
-const ResultComponent: FC = () => {
-
+const ResultComponent: FC<IResultComponent> = ({data}:IResultComponent) => {
+  
   return (
     <>
       <img
-        src="https://hotline.ua/img/tx/265/265996183_s265.jpg"
+        src={data && data[1]}
         alt=""
         width={50}
         style={{ position: "absolute", left: "-70px", marginTop: "70px" }}
@@ -19,12 +20,12 @@ const ResultComponent: FC = () => {
       >
         <Divider orientation="left">{"GPU"}</Divider>
         <Typography.Title level={5} style={{ margin: 0 }}>
-          GeForce RTX 3060
+          {data && data[2]}
         </Typography.Title>
       </Space>
-      <Card className="price" style={{ position: "absolute", right:0, marginTop: "50px" }}>
+      <Card className="price" style={{ position: "absolute", right:"-70px", marginTop: "50px", border:"none" }}>
       <Typography.Title level={5} style={{ margin: 0 }}>
-          Price:200$
+          Price:{data && data[0]}
         </Typography.Title>
       </Card>
     </>

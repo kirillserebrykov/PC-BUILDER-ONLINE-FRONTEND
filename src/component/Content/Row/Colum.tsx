@@ -30,7 +30,7 @@ const ColumComponent: FC<IPropsName> = ({ name }: IPropsName) => {
           <DropdownComponent name={name} />
           <InputComponent name={name} setSkip={setSkip} skip={skip} setUrl={setUrl} isFetching={isFetching} refetch={refetch} />
         </>
-        : <ResultComponent/>
+        : <ResultComponent data={data && data} />
       }
     </Col>
   );

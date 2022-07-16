@@ -19,13 +19,9 @@ const InputComponent: FC<IInputComponent> = ({
     setValue(e.target.value);
 
   const handlerSubmit =  () => {
-    if(skip){
       setSkip(false);
       setUrl(value);
-
-    }else {
       refetch()
-    }
     
   };
 

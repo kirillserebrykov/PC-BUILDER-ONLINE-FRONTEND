@@ -18,9 +18,7 @@ const ContentComponent: FC = (): JSX.Element => {
   return (
     <div className="wrapper-content">
       <Row gutter={[0, 10]} className="wrapper-content-row">
-        <ColumComponent name={"el"} />
-        <ColumComponent name={"5435"} />
-        <ColumComponent name={"543dasd5"} />
+        {Сomponents}
       </Row>
       <ModalComponentContainer />
     </div>
