@@ -7,12 +7,10 @@ import "./Input.css";
 const InputComponent: FC<IInputComponent> = ({
   name,
   setSkip,
-  skip,
   setUrl,
   isFetching,
   refetch
 }: IInputComponent) => {
-
 
   const [value, setValue] = useState("");
   const handlerChenge = (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -22,7 +20,6 @@ const InputComponent: FC<IInputComponent> = ({
       setSkip(false);
       setUrl(value);
       refetch()
-    
   };
 
   return (

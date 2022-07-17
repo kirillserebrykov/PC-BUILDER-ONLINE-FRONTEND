@@ -4,6 +4,8 @@ import { Button } from "antd";
 import "antd/dist/antd.css";
 import "./Footer.css";
 import { ModalContext } from ".././../context/ModalContext";
+import { useAppSelector } from "../../redux/hooks";
+import { RootState } from "../../redux/store";
 
 const buttonStyle: CSS.Properties = {
   width: "60px",
@@ -13,6 +15,12 @@ const buttonStyle: CSS.Properties = {
 };
 const FooterComponent: FC = () => {
   const ModalVisibility = useContext(ModalContext);
+  const TotalPrice = useAppSelector(
+    (state: RootState) => state.TotalPriceSlice.TotalPrice
+  );
+  const currency = useAppSelector(
+    (state: RootState) => state.TotalPriceSlice.currency
+  );
   const handleOpen = () =>{ 
     ModalVisibility?.setVisibility(true);
     ModalVisibility?.setTypeModal("add")
@@ -21,7 +29,7 @@ const FooterComponent: FC = () => {
   return (
     <>
       <div className="wrapper-price">
-        <span>Price: 4000</span>
+        <span>Price: {TotalPrice} {currency}</span>
       </div>
       <Button onClick={handleOpen} ghost type="primary" style={buttonStyle}>
         <span>+</span>

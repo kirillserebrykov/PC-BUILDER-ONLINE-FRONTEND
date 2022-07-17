@@ -3,7 +3,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import type { СomponentsState,IRenameActions } from "./typeAndInterfaceСomponentSlice/reduxInterface";
 
 const initialState: СomponentsState = {
-  NamesСomponents: ["GPU", "CPU", "ddasdas"],
+  NamesСomponents: ["1", "2", "3"],
 };
 
 const ComponentHandler = (
