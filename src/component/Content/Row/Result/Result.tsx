@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect} from "react";
 import "antd/dist/antd.css";
 import { Typography, Card, Space, Divider } from "antd";
 import type * as CSS from "csstype";
@@ -58,28 +58,28 @@ const PriceComponent: FC<IPrice> = ({ price }: IPrice) => {
 };
 
 const ResultComponent: FC<IResultComponent> = ({ data, name }: IResultComponent) => {
- const price = data && +data[0].replace(/[A-Z,a-z, а-я,\W]/g,"")
- const currency = data[0].replace(/[0-9]/g,"")
+ const {price, img, title, currency} = data 
  const dispatch = useAppDispatch();
+
  useEffect(() => {
   dispatch(increment(price))
   dispatch(setCurrency(currency))
-}, [data]) 
+}, [currency, dispatch, price]) 
  
   return (
     <>
-      <ImgComponent url={data[1]} />
+      <ImgComponent url={img} />
       <Space
         direction="vertical"
         size="middle"
         style={{ display: "flex", width: "100%", rowGap: 0 }}
       >
-        <TitleComponent title={data[2]} name={name} />
+        <TitleComponent title={title} name={name} />
       </Space>
-      <PriceComponent price={data[0]} />
+      <PriceComponent price={price + currency} />
     </>
   );
-};
+}
 
 export default ResultComponent;
 
