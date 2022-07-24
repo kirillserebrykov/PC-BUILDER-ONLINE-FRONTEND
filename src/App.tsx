@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { Layout } from "antd";
 import ContentComponent from "./component/Content/Content";
 import HeaderComponent from "./component/Header/Header";
@@ -7,12 +7,17 @@ import { ModalContext } from "./context/ModalContext";
 import type * as CSS from "csstype";
 import "antd/dist/antd.css";
 import "./App.css";
+
+
 const { Content, Footer, Header } = Layout;
 
 const App: FC = () => {
   const [isVisibility, setVisibility] = useState(false);
   const [typeModal, setTypeModal] = useState("");
   const [renameComponent,setRenameComponent] = useState("");
+  
+  
+
   return (
     <Layout>
       <Header style={headerStyle}>

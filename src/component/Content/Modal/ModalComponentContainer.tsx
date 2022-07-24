@@ -4,6 +4,7 @@ import { useAppDispatch } from "../../../redux/hooks";
 import { ModalContext } from "../../../context/ModalContext";
 import { addСomponent, renameСomponent } from "../../../redux/СomponentSlice";
 import ModalComponent from "./Modal";
+import { saveState } from "../../../localStorage/localStorage";
 
 const ModalComponentContainer: FC = () => {
   const ModalVisibility = useContext(ModalContext);
@@ -15,7 +16,9 @@ const ModalComponentContainer: FC = () => {
       <ModalComponent
         isVisibility={ModalVisibility?.isVisibility}
         setVisibility={(value) => ModalVisibility?.setVisibility(value)}
-        ComponentHandler={(value) => dispatch(addСomponent(value))}
+        ComponentHandler={(value) => {
+          dispatch(addСomponent(value))
+        }}
         modalTitle="Add new component"
       />
     );

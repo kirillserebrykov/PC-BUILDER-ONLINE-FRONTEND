@@ -1,10 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { СomponentsState,IRenameActions } from "./typeAndInterfaceСomponentSlice/reduxInterface";
+import { saveState } from "../localStorage/localStorage";
 
 const initialState: СomponentsState = {
   NamesСomponents: ["1", "2", "3"],
 };
+
+
 
 const ComponentHandler = (
   NamesСomponents: Array<string>,
@@ -28,6 +31,7 @@ export const СomponentsSlice = createSlice({
   reducers: {
     addСomponent: (state, action: PayloadAction<string>) => {
       state.NamesСomponents.push(action.payload);
+      saveState(state.NamesСomponents)
     },
     deleteСomponent: (state, action: PayloadAction<string>) => {
       ComponentHandler(state.NamesСomponents, action.payload, "delete");
@@ -38,5 +42,5 @@ export const СomponentsSlice = createSlice({
   },
 });
 
-export const { addСomponent, deleteСomponent,renameСomponent } = СomponentsSlice.actions;
+export const { addСomponent, deleteСomponent,renameСomponent, } = СomponentsSlice.actions;
 export default СomponentsSlice.reducer;
