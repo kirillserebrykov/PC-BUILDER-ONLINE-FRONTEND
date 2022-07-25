@@ -1,10 +1,11 @@
-import React, { FC } from "react";
+import React, { FC, useContext } from "react";
 import {Dropdown, Menu } from "antd";
 import "antd/dist/antd.css";
 import type * as CSS from "csstype";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { RootState } from "../../../redux/store";
 import { divideTotalPrice, multiplyTotalPrice, setCurrency } from "../../../redux/TotalPriceSlice";
+import { CurrencyContext } from "../../../context/CurrencyContext";
 const styleBtn: CSS.Properties = {
   width: "100%",
   border: "none",
@@ -19,11 +20,26 @@ interface ISelectCurrency {
 
 const SelectCurrency = ({currency}: ISelectCurrency) => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
+  const CurrencyStatus = useContext(CurrencyContext);
   const dispatch = useAppDispatch();
   const clickHandler = () => {
     dispatch(setCurrency(currency))
-    if(currency === "$")  dispatch(divideTotalPrice(36.56))
-    if(currency === "€") dispatch(divideTotalPrice(37.25))  
+    switch (currency as string) {
+      case "UAH":
+      case "ГРН":
+      case "₴":
+        CurrencyStatus?.setCurrencyStatus("UAH") 
+        break;
+      case "USD":
+      case "$":
+        CurrencyStatus?.setCurrencyStatus("USD")  
+        break;
+      case "EURO":
+      case "€":
+        CurrencyStatus?.setCurrencyStatus("EUR")
+        break;
+    }
+   
     
   }
   return (
@@ -34,8 +50,8 @@ const SelectCurrency = ({currency}: ISelectCurrency) => {
 };
 
 
-const menu = (
-  <Menu
+const MenuComponent = () => {
+return <Menu
     items={[
       {
         key: "1",
@@ -53,7 +69,8 @@ const menu = (
       
     ]}
   />
-);
+}
+
 
 const CurrencyComponent: FC = () => {
   const currency = useAppSelector(
@@ -61,7 +78,7 @@ const CurrencyComponent: FC = () => {
   );
 
   return (
-    <Dropdown overlay={menu} placement="top">
+    <Dropdown overlay={<MenuComponent/>} placement="top">
       <span>{currency === "ГРН" ? "₴" : currency}</span>
     </Dropdown>
   );

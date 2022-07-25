@@ -7,6 +7,8 @@ export interface IRenameActions {
   renameValue: string;
 }
 export interface ITotalPrice {
-  TotalPrice: number;
+  TotalPriceUAH: number;
+  TotalPriceEURO: number;
+  TotalPriceUSD: number;
   currency: string
 }

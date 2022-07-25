@@ -34,6 +34,7 @@ export const СomponentsSlice = createSlice({
       saveState(state.NamesСomponents)
     },
     deleteСomponent: (state, action: PayloadAction<string>) => {
+      console.log(action.payload)
       ComponentHandler(state.NamesСomponents, action.payload, "delete");
     },
     renameСomponent: (state, action: PayloadAction<IRenameActions>) => {

@@ -2,6 +2,7 @@ import React, { FC, useState } from "react";
 import "antd/dist/antd.css";
 import { Modal, Input } from "antd";
 import "./Modal.css";
+import { ComponentStateActions } from "../../../localStorage/localStorage";
 
 interface IModalComponent {
   isVisibility?: boolean;
@@ -26,6 +27,7 @@ const ModalComponent: FC<IModalComponent> = ({
   const handleOk = () => {
     if (value) {
       ComponentHandler(value);
+      ComponentStateActions(value, "rename")
       setValue("");
       setVisibility(false);
     }

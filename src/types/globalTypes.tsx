@@ -17,6 +17,7 @@ export interface IResultComponent {
 export interface ITitleComponent {
   title:string;
   name:string;
+  price:string
 }
 
 export interface I_ImgComponent {

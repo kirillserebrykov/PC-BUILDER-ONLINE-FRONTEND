@@ -17,7 +17,7 @@ const fakeData = {
   "price": 1000,
   "img": "https://img.moyo.ua/img/products/5124/21_600.jpg?1658563555",
   "title": "Відеокарта MSI GeForce RTX3070 Ti 8GB GDDR6 SUPRIM X (RTX_3070TI_SUPRIM_X_8G)",
-  "currency": "ГРН"
+  "currency": "EUR"
   }
 const ColumComponent: FC<IPropsName> = ({ name }: IPropsName) => {
   const [skip, setSkip] = useState<boolean>(true);
@@ -28,7 +28,7 @@ const ColumComponent: FC<IPropsName> = ({ name }: IPropsName) => {
 
   return (
     <Col className="gutter-row" span={24} style={ColStyle}>
-      {!fakeData ? (
+      {!data ? (
         <>
           <DropdownComponent name={name} />
           <InputComponent
@@ -40,7 +40,7 @@ const ColumComponent: FC<IPropsName> = ({ name }: IPropsName) => {
           />
         </>
       ) : (
-        <ResultComponent data={fakeData} name={name} />
+        <ResultComponent data={data} name={name} />
       )}
     </Col>
   );

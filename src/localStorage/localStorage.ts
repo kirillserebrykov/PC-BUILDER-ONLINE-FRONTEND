@@ -19,3 +19,28 @@ export const saveState = (state:any) => {
         console.log(err);
     }
 };
+
+
+
+export const ComponentStateActions = (value:string, type:string) => {
+
+  try {
+    const serialState =  localStorage.getItem('appState');
+    if (serialState === null) {
+      return undefined;
+    }
+    
+    //  JSON.parse(serialState).map((el: string, i: string | number) => {
+    //   if (el === value) {
+    //     if (type === "delete") return saveState(JSON.parse(serialState).splice(i, 1)) 
+    //     if (type === "rename") return saveState(JSON.parse(serialState)[i] = value) 
+    //   }
+    // });
+
+
+  } catch (err) {
+    return undefined;
+  }
+  
+};
+
