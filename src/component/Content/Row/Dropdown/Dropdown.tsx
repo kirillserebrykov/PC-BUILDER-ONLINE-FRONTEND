@@ -5,6 +5,7 @@ import { useAppDispatch } from "../../../../redux/hooks";
 import { deleteСomponent } from "../../../../redux/СomponentSlice";
 import { IPropsName } from "../../../../types/globalTypes";
 import { ModalContext } from "../../../../context/ModalContext";
+import { ComponentStateActions, loadState } from "../../../../localStorage/localStorage";
 
 const MenuComponent: FC<IPropsName> = ({ name }: IPropsName) => {
   const ModalVisibility = useContext(ModalContext);
@@ -32,7 +33,9 @@ const MenuComponent: FC<IPropsName> = ({ name }: IPropsName) => {
           label: (
             <button
               className="resetStyle"
-              onClick={() => dispatch(deleteСomponent(name))}
+              onClick={() => {
+                  dispatch(deleteСomponent(name))
+              }}
             >
               Delete
             </button>

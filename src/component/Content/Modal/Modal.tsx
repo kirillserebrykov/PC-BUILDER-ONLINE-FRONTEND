@@ -27,7 +27,6 @@ const ModalComponent: FC<IModalComponent> = ({
   const handleOk = () => {
     if (value) {
       ComponentHandler(value);
-      ComponentStateActions(value, "rename")
       setValue("");
       setVisibility(false);
     }

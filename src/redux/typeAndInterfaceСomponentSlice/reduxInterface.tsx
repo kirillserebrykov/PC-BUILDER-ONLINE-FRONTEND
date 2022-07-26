@@ -1,5 +1,5 @@
 export interface СomponentsState {
-  NamesСomponents: Array<string>;
+  NamesСomponents: Array<string> ; 
 }
 
 export interface IRenameActions {
