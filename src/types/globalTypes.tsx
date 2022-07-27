@@ -1,9 +1,17 @@
 export interface IPropsName {
-  name: string;
+  name: string
 }
+
+export interface IColumPropsName {
+  name: string;
+  value: string
+}
+
+
 
 export interface IInputComponent {
   name: string;
+  defaultValue:string;
   setSkip: (prevState: any) => void;
   setUrl: (value: string) => void;
   isFetching: boolean;

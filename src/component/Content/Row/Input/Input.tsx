@@ -6,14 +6,15 @@ import "./Input.css";
 
 const InputComponent: FC<IInputComponent> = ({
   name,
+  defaultValue,
   setSkip,
   setUrl,
   isFetching,
   refetch
 }: IInputComponent) => {
 
-  const [value, setValue] = useState("");
-  const handlerChenge = (e: React.ChangeEvent<HTMLInputElement>) =>
+  const [value, setValue] = useState(defaultValue);
+  const handlerChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setValue(e.target.value);
 
   const handlerSubmit =  () => {
@@ -27,7 +28,7 @@ const InputComponent: FC<IInputComponent> = ({
       <Divider orientation="left">{name}</Divider>
       <Input.Group compact style={{ display: "flex" }}>
         <Input
-          onChange={(e) => handlerChenge(e)}
+          onChange={(e) => handlerChange(e)}
           value={value}
           className="input-row"
           placeholder="URL"

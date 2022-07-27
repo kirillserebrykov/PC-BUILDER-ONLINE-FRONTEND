@@ -4,12 +4,11 @@ import { useAppDispatch } from "../../../redux/hooks";
 import { ModalContext } from "../../../context/ModalContext";
 import { addСomponent, renameСomponent } from "../../../redux/СomponentSlice";
 import ModalComponent from "./Modal";
-import { ComponentStateActions, saveState } from "../../../localStorage/localStorage";
+import ModalShareComponent from "./ModalShare";
 
 const ModalComponentContainer: FC = () => {
   const ModalVisibility = useContext(ModalContext);
   const dispatch = useAppDispatch();
-
 
   if (ModalVisibility?.typeModal === "add") {
     return (
@@ -17,7 +16,7 @@ const ModalComponentContainer: FC = () => {
         isVisibility={ModalVisibility?.isVisibility}
         setVisibility={(value) => ModalVisibility?.setVisibility(value)}
         ComponentHandler={(value) => {
-          dispatch(addСomponent(value))
+          dispatch(addСomponent(value));
         }}
         modalTitle="Add new component"
       />
@@ -27,22 +26,23 @@ const ModalComponentContainer: FC = () => {
       <ModalComponent
         isVisibility={ModalVisibility?.isVisibility}
         setVisibility={(value) => ModalVisibility?.setVisibility(value)}
-        ComponentHandler={(value) =>{
+        ComponentHandler={(value) => {
           dispatch(
             renameСomponent({
               component: ModalVisibility?.renameComponent,
               renameValue: value,
             })
-          )
-          
-        }
-        }
+          );
+        }}
         modalTitle="Rename new component"
       />
     );
-  } else return <div className=""></div>;
-
-
-  
+  } else
+    return (
+      <ModalShareComponent
+        isVisibility={ModalVisibility?.isVisibility}
+        setVisibility={(value) => ModalVisibility?.setVisibility(value)}
+      />
+    );
 };
 export default ModalComponentContainer;

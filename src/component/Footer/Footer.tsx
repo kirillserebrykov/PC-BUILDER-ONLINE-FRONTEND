@@ -7,16 +7,10 @@ import { ModalContext } from ".././../context/ModalContext";
 import { useAppSelector } from "../../redux/hooks";
 import { RootState } from "../../redux/store";
 import CurrencyComponent from "./Currency/Currency";
-import { Provider } from 'react-redux';
+import Share from '../../assets/share.svg';
 import { CurrencyContext } from "../../context/CurrencyContext";
 
-const buttonStyle: CSS.Properties = {
-  width: "60px",
-  borderRadius: "20px",
-  borderColor: "rgb(54, 79, 107)",
-  color: "rgb(54, 79, 107)",
-  fontFamily: "Source Sans Pro, sans-serif"
-};
+
 const FooterComponent: FC = () => {
   const ModalVisibility = useContext(ModalContext);
   const TotalPrice = useAppSelector(
@@ -26,9 +20,14 @@ const FooterComponent: FC = () => {
   const [currencyStatus,  setCurrencyStatus] = useState("€")
 
 
-  const handleOpen = () =>{ 
+  const handleOpenAdd = () =>{ 
     ModalVisibility?.setVisibility(true);
     ModalVisibility?.setTypeModal("add")
+  }
+  
+const handleOpenShare = () =>{ 
+    ModalVisibility?.setVisibility(true);
+    ModalVisibility?.setTypeModal("share")
   }
   const currencyCheck = () =>{
     switch (currencyStatus as string) {
@@ -57,11 +56,29 @@ const FooterComponent: FC = () => {
        
       </div>
       
-      <Button onClick={handleOpen} ghost type="primary" style={buttonStyle}>
+      <Button onClick={handleOpenAdd} ghost type="primary" style={buttonStyle}> 
         <span>+</span>
+      </Button>
+      <Button onClick={handleOpenShare} ghost type="primary" style={buttonStyle}> 
+        <img width={20} src={Share} alt="Share" />
       </Button>
     </>
   );
 };
 
 export default FooterComponent;
+
+const buttonStyle: CSS.Properties = {
+  width: "60px",
+  borderRadius: "20px",
+  borderColor: "rgb(54, 79, 107)",
+  color: "rgb(54, 79, 107)",
+  fontFamily: "Source Sans Pro, sans-serif",
+  marginLeft: "10px",
+  display:"flex",
+  justifyContent:"center",
+  alignItems:"center"
+
+  
+  
+};

@@ -5,16 +5,16 @@ import { useAppDispatch } from "../../../../redux/hooks";
 import { deleteСomponent } from "../../../../redux/СomponentSlice";
 import { IPropsName } from "../../../../types/globalTypes";
 import { ModalContext } from "../../../../context/ModalContext";
-import { ComponentStateActions, loadState } from "../../../../localStorage/localStorage";
 
 const MenuComponent: FC<IPropsName> = ({ name }: IPropsName) => {
   const ModalVisibility = useContext(ModalContext);
+  const dispatch = useAppDispatch();
   const handleRename = () => {
     ModalVisibility?.setRenameComponent(name);
     ModalVisibility?.setVisibility(true);
     ModalVisibility?.setTypeModal("rename");
   };
-  const dispatch = useAppDispatch();
+  
 
   return (
     <Menu

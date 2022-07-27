@@ -1,5 +1,11 @@
-export interface СomponentsState {
-  NamesСomponents: Array<string> ; 
+
+export interface INamesСomponents {
+  name: string
+  value:string
+}
+
+export interface IСomponentsState {
+  Сomponents: Array<INamesСomponents>; 
 }
 
 export interface IRenameActions {

@@ -3,11 +3,12 @@ import "antd/dist/antd.css";
 import { Typography } from "antd";
 import "./Header.css";
 import type * as CSS from "csstype";
+import LOGO from '../../assets/LOGO.svg';
 const { Title } = Typography;
 
 const HeaderComponent: FC = () => (
   <div className="wrapper-header-text">
-    <Title style={titleStyle}>PC BUILDER ONLINE</Title>
+    <img width={150} src={LOGO}  style={titleStyle}/>
     <a className="paragraph-text" href="https://www.standwithukraine.how/">
       <img
         width={20}

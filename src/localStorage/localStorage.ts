@@ -1,6 +1,8 @@
+import { INamesСomponents } from "../redux/typeAndInterfaceСomponentSlice/reduxInterface";
+
 export const loadState = () => {
   try {
-    const serialState = localStorage.getItem("appState");
+    const serialState = localStorage.getItem("ComponentState");
     if (serialState === null) {
       return undefined;
     }
@@ -12,53 +14,61 @@ export const loadState = () => {
 
 
 
-
-export const saveState = (state: Array<string>) => {
+export const saveState = (state: any) => {
   try {
     const serialState = JSON.stringify(state);
-    localStorage.setItem("appState", serialState);
+    localStorage.setItem("ComponentState", serialState);
   } catch (err) {
     console.log(err);
   }
 };
 const StateMap = (
-  state: Array<string>,
+  state: Array<INamesСomponents>,
   component: string,
   type: string,
   value: string = ""
 ) => {
-  return state.map((el: string, i: number) => {
-    if (el === component) {
+  
+  return state.map((el: INamesСomponents, i: number) => {
+    if (el.name === component) {
       if (type === "delete") {
         state.splice(i, 1);
         saveState(state);
-        return  state
+        return state;
       } else if (type === "rename") {
-        state[i] = value;
-        return saveState(state);
+        state[i].name = value;
+        
+        saveState(state);
+        return state;
       }
     }
   });
 };
 
-
-
 export const ComponentStateActions = (
   component: string,
   type: string,
   value: string = ""
-): Array<string> => {
+) => {
   try {
-    let LocalStorageStateJSON = localStorage.getItem("appState");
+    
+    let LocalStorageStateJSON = localStorage.getItem("ComponentState");
     if (LocalStorageStateJSON === null) {
       return [""];
     }
     let LocalStorageState = JSON.parse(LocalStorageStateJSON);
-    const results: Array<any> = StateMap(LocalStorageState, component, type, value).filter(element => {
+    const results: Array<any> = StateMap(
+      LocalStorageState,
+      component,
+      type,
+      value
+    ).filter((element) => {
       return element !== undefined;
     });
-   return  results[0]
+    
+    
+    return results[0];
   } catch (err) {
-    return [""]
+    return [""];
   }
 };
