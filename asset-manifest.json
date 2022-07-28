@@ -1,15 +1,17 @@
 {
   "files": {
-    "main.css": "/PC-BUILDER-ONLINE-FRONTEND/static/css/main.dd5c9fe8.css",
-    "main.js": "/PC-BUILDER-ONLINE-FRONTEND/static/js/main.80b6ad33.js",
+    "main.css": "/PC-BUILDER-ONLINE-FRONTEND/static/css/main.9fc4eca0.css",
+    "main.js": "/PC-BUILDER-ONLINE-FRONTEND/static/js/main.af241417.js",
     "static/js/787.0d3c87a8.chunk.js": "/PC-BUILDER-ONLINE-FRONTEND/static/js/787.0d3c87a8.chunk.js",
+    "static/media/LOGO.svg": "/PC-BUILDER-ONLINE-FRONTEND/static/media/LOGO.ba5b6fad02c6ea4c169d61ecb8f7441f.svg",
+    "static/media/share.svg": "/PC-BUILDER-ONLINE-FRONTEND/static/media/share.2f475ef12c592f3832242e2992ac5d2d.svg",
     "index.html": "/PC-BUILDER-ONLINE-FRONTEND/index.html",
-    "main.dd5c9fe8.css.map": "/PC-BUILDER-ONLINE-FRONTEND/static/css/main.dd5c9fe8.css.map",
-    "main.80b6ad33.js.map": "/PC-BUILDER-ONLINE-FRONTEND/static/js/main.80b6ad33.js.map",
+    "main.9fc4eca0.css.map": "/PC-BUILDER-ONLINE-FRONTEND/static/css/main.9fc4eca0.css.map",
+    "main.af241417.js.map": "/PC-BUILDER-ONLINE-FRONTEND/static/js/main.af241417.js.map",
     "787.0d3c87a8.chunk.js.map": "/PC-BUILDER-ONLINE-FRONTEND/static/js/787.0d3c87a8.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.dd5c9fe8.css",
-    "static/js/main.80b6ad33.js"
+    "static/css/main.9fc4eca0.css",
+    "static/js/main.af241417.js"
   ]
 }
