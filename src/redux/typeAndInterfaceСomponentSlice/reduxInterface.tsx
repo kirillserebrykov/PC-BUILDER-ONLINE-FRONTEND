@@ -10,7 +10,7 @@ export interface IСomponentsState {
 
 export interface IRenameActions {
   component: string;
-  renameValue: string;
+  value: string;
 }
 export interface ITotalPrice {
   TotalPriceUAH: number;

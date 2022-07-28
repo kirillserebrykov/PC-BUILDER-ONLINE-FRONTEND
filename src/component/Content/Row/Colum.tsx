@@ -25,7 +25,7 @@ const ColumComponent: FC<IColumPropsName> = ({ name,  value = ""}: IColumPropsNa
   const { data, isFetching, refetch } = useGetDataComponentQuery(url, {
     skip: skip,
   });
-
+  
   return (
     <Col className="gutter-row" span={24} style={ColStyle}>
       {!data ? (

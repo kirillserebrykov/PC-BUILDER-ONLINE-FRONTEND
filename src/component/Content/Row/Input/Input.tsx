@@ -3,6 +3,8 @@ import { Input, Button, Divider } from "antd";
 import { IInputComponent } from "../../../../types/globalTypes";
 import "antd/dist/antd.css";
 import "./Input.css";
+import { valueInputChange } from "../../../../redux/СomponentSlice";
+import { useAppDispatch } from './../../../../redux/hooks';
 
 const InputComponent: FC<IInputComponent> = ({
   name,
@@ -16,9 +18,10 @@ const InputComponent: FC<IInputComponent> = ({
   const [value, setValue] = useState(defaultValue);
   const handlerChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setValue(e.target.value);
-
+  const dispatch = useAppDispatch()
   const handlerSubmit =  () => {
       setSkip(false);
+      dispatch(valueInputChange({ component: name, value: value }))
       setUrl(value);
       refetch()
   };

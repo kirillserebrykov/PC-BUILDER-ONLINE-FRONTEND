@@ -30,7 +30,7 @@ const ModalComponentContainer: FC = () => {
           dispatch(
             renameСomponent({
               component: ModalVisibility?.renameComponent,
-              renameValue: value,
+              value,
             })
           );
         }}
