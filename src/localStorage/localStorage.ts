@@ -37,7 +37,11 @@ const StateMap = (
         return state;
       } else if (type === "rename") {
         state[i].name = value;
-        
+        saveState(state);
+        return state;
+      }
+      else if (type === "changeValue") {
+        state[i].value = value;
         saveState(state);
         return state;
       }
@@ -65,8 +69,7 @@ export const ComponentStateActions = (
     ).filter((element) => {
       return element !== undefined;
     });
-    
-    
+
     return results[0];
   } catch (err) {
     return [""];

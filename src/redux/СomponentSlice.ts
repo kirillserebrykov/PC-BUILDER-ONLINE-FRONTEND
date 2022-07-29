@@ -33,7 +33,6 @@ const ComponentHandler = (
         Сomponents[i].name = value;
       }
       if (type === "changeValue") {
-      
         Сomponents[i].value = value;
       }
     }
@@ -83,12 +82,21 @@ export const СomponentsSlice = createSlice({
       }
     },
     valueInputChange: (state, action: PayloadAction<IRenameActions>) => {
+      if (loadState()) {
+        state.Сomponents = ComponentStateActions(
+          action.payload.component,
+          "changeValue",
+          action.payload.value
+        );
+      }else {
       ComponentHandler(
         state.Сomponents,
         action.payload.component,
         "changeValue",
         action.payload.value
       );
+      saveState(state.Сomponents);
+      }
     },
   },
 });
