@@ -28,7 +28,7 @@ const Сomponents = (state: any) => {
   .filter((el) => el !== "")
   .map((el) => {
     return {
-      name: el.split("=")[0],
+      name: decodeURI(el.split("=")[0]),
       value: el.split("=")[1],
     };
   });
