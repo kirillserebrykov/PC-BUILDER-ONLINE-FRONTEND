@@ -8,22 +8,31 @@ import type * as CSS from "csstype";
 import "antd/dist/antd.css";
 import "./App.css";
 
-
 const { Content, Footer, Header } = Layout;
 
 const App: FC = () => {
   const [isVisibility, setVisibility] = useState(false);
+  const [shareMode, setShareMode] = useState(false);
   const [typeModal, setTypeModal] = useState("");
-  const [renameComponent,setRenameComponent] = useState("");
-  
-  
+  const [renameComponent, setRenameComponent] = useState("");
 
   return (
     <Layout>
       <Header style={headerStyle}>
         <HeaderComponent />
       </Header>
-      <ModalContext.Provider value={{ isVisibility, setVisibility, typeModal, setTypeModal, renameComponent,setRenameComponent }}>
+      <ModalContext.Provider
+        value={{
+          isVisibility,
+          setVisibility,
+          typeModal,
+          setTypeModal,
+          renameComponent,
+          setRenameComponent,
+          shareMode,
+          setShareMode,
+        }}
+      >
         <Content style={contentStyle}>
           <ContentComponent />
         </Content>

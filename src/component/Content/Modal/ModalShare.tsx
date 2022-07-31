@@ -26,7 +26,6 @@ const ModalShareComponent: FC<IModalShareComponent> = ({
     });
 
   navigator.clipboard.writeText(resultURL);
-  console.log(resultURL);
   resultURL = `${window.location.href}#components`;
   const onCloseAlert = () => {
     setVisibility(false);
@@ -50,7 +49,7 @@ const ModalShareComponent: FC<IModalShareComponent> = ({
 
 export default ModalShareComponent;
 const AlertStyle: CSS.Properties = {
-  position: "absolute",
+  position: "fixed",
   right: "10px",
   bottom: "56px",
   borderRadius: "10px",

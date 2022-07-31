@@ -3,6 +3,11 @@ export interface INamesСomponents {
   name: string
   value:string
 }
+export interface INamesСomponentsForSetState {
+  name?: string
+  value?:string
+}
+
 
 export interface IСomponentsState {
   Сomponents: Array<INamesСomponents>; 

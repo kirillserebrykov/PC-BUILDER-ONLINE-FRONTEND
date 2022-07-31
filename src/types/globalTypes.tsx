@@ -1,5 +1,5 @@
 export interface IPropsName {
-  name: string
+  name: string,
 }
 
 export interface IColumPropsName {
@@ -21,11 +21,14 @@ export interface IInputComponent {
 export interface IResultComponent {
   data?: any;
   name: string;
+  url:string;
+  
 }
 export interface ITitleComponent {
   title:string;
   name:string;
-  price:string
+  price:string;
+  url:string;
 }
 
 export interface I_ImgComponent {

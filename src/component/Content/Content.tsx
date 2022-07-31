@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, useContext, useEffect } from "react";
 import "antd/dist/antd.css";
 import { Row } from "antd";
 import "./Content.css";
@@ -9,6 +9,7 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { useLocation } from "react-router-dom";
 import { loadState } from "../../localStorage/localStorage";
 import { setСomponent } from "../../redux/СomponentSlice";
+import { ModalContext } from "../../context/ModalContext";
 
 
 const Сomponents = (state: any) => {
@@ -21,7 +22,7 @@ const Сomponents = (state: any) => {
   ));
 };
 
-const ComponentsUrl = (hash:string) =>{
+ export const ComponentsUrl = (hash:string) =>{
  return  hash
   .split("#")
   .filter((el) => el !== "")
@@ -37,7 +38,7 @@ const ComponentsUrl = (hash:string) =>{
 const ContentComponent: FC = (): JSX.Element => {
   const { hash } = useLocation();
   const dispatch = useAppDispatch()
-
+  const ShareMode = useContext(ModalContext);
   const СomponentsReduxState = useAppSelector(
     (state: RootState) => state.СomponentsSlice.Сomponents
   );
@@ -46,11 +47,12 @@ const ContentComponent: FC = (): JSX.Element => {
         dispatch(setСomponent()) 
       } 
     }, [ ])
-
-
   const ComponentsChecker = () => {
-    if (hash) return Сomponents(ComponentsUrl(hash))
-    else if (loadState()) return Сomponents(СomponentsReduxState) 
+    if (hash) {
+      ShareMode?.setShareMode(true)
+      return Сomponents(ComponentsUrl(hash))
+    }
+    else if (loadState()) return Сomponents(loadState()) 
     else return Сomponents(СomponentsReduxState)
   };
 

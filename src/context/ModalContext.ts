@@ -7,6 +7,8 @@ interface ModalContextInterface {
   setTypeModal: (value: string) => void;
   renameComponent: string;
   setRenameComponent: (value: string) => void;
+  shareMode: boolean,
+  setShareMode: (value: boolean) => void;
 }
 
 export const ModalContext = createContext<ModalContextInterface | undefined>(

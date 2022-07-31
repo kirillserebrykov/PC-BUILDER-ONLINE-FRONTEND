@@ -8,23 +8,27 @@ import {
   I_ImgComponent,
 } from "../../../../types/globalTypes";
 import { useAppDispatch } from "../../../../redux/hooks";
-import { increment, setCurrency } from "../../../../redux/TotalPriceSlice";
+import { decrement, increment, setCurrency } from "../../../../redux/TotalPriceSlice";
+
 
 const TitleComponent: FC<ITitleComponent> = ({
   title,
   name,
   price,
+  url
 }: ITitleComponent) => {
   
   return (
     <>
+    
       <Divider orientation="left">
-        <span>{name}</span> 
+       <span>{name}</span>
         <span style={priceStyle}>{price}</span>
       </Divider>
       <Typography.Title level={5} style={{ margin: 0, paddingLeft:"60px"}}>
-        {title}
+      <a target="_blank" href={url}>{title}</a> 
       </Typography.Title>
+     
     </>
   );
 };
@@ -50,14 +54,21 @@ const ImgComponent: FC<I_ImgComponent> = ({ url }: I_ImgComponent) => {
 const ResultComponent: FC<IResultComponent> = ({
   data,
   name,
+  url,
 }: IResultComponent) => {
   const { price, img, title, currency } = data;
   const dispatch = useAppDispatch();
-
+  console.log(data)
   useEffect(() => {
     dispatch(setCurrency(currency));
     dispatch(increment(price));
   }, [currency, dispatch, price]);
+
+  useEffect(() => {
+    return () =>{
+      data && dispatch(decrement(price));
+    }
+  }, [])
 
   return (
     <>
@@ -67,7 +78,7 @@ const ResultComponent: FC<IResultComponent> = ({
         size="middle"
         style={{ display: "flex", width: "100%", rowGap: 0,  }}
       >
-        <TitleComponent title={title} name={name} price={price + currency} />
+        <TitleComponent title={title} url={url} name={name} price={price + currency} />
       </Space>
     </>
   );

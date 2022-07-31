@@ -49,7 +49,7 @@ const MenuComponent: FC<IPropsName> = ({ name }: IPropsName) => {
 const DropdownComponent: FC<IPropsName> = ({ name }: IPropsName) => {
   return (
     <Dropdown overlay={<MenuComponent name={name} />} placement="bottomLeft">
-      <span className="dropdown-span">...</span>
+      <span className={`dropdown-span`}>...</span>
     </Dropdown>
   );
 };

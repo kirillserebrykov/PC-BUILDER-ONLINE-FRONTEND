@@ -4,6 +4,7 @@ import type {
   IСomponentsState,
   IRenameActions,
   INamesСomponents,
+  INamesСomponentsForSetState,
 } from "./typeAndInterfaceСomponentSlice/reduxInterface";
 import {
   ComponentStateActions,
@@ -14,7 +15,35 @@ import {
 const initialState: IСomponentsState = {
   Сomponents: [
     {
-      name: "1",
+      name: "CPU",
+      value: "",
+    },
+    {
+      name: "GPU",
+      value: "",
+    },
+    {
+      name: "Motherboard",
+      value: "",
+    },
+    {
+      name: "RAM",
+      value: "",
+    },
+    {
+      name: "Cooling system",
+      value: "",
+    },
+    {
+      name: "SSD",
+      value: "",
+    },
+    {
+      name: "PB",
+      value: "",
+    },
+    {
+      name: "Box",
       value: "",
     },
   ],
@@ -54,6 +83,7 @@ export const СomponentsSlice = createSlice({
       }
     },
     setСomponent: (state) => {
+
         state.Сomponents = loadState();
     },
     deleteСomponent: (state, action: PayloadAction<string>) => {

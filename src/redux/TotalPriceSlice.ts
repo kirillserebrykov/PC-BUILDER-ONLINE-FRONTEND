@@ -34,6 +34,30 @@ const IncrementInCurrency = (state: ITotalPrice, amount: number) => {
       state.TotalPriceUAH += amount * EURO;
   }
 };
+const DecrementInCurrency = (state: ITotalPrice, amount: number) => {
+  switch (state.currency as string) {
+    case "UAH":
+    case "ГРН":
+    case "$":
+      state.TotalPriceUAH -= amount;
+      state.TotalPriceUSD -= amount / USD;
+      state.TotalPriceEURO -= amount / EURO;
+      break;
+    case "USD":
+    case "₴":
+      state.TotalPriceUSD -= amount;
+      state.TotalPriceUAH -= amount * USD;
+      state.TotalPriceEURO -= amount * 0.97;
+      break;
+    case "EUR":
+    case "€":
+      state.TotalPriceEURO -= amount;
+      state.TotalPriceUSD -= amount * 1.01;
+      state.TotalPriceUAH -= amount * EURO;
+  }
+};
+
+
 
 export const TotalPriceSlice = createSlice({
   name: "TotalPrice",
@@ -43,7 +67,7 @@ export const TotalPriceSlice = createSlice({
       IncrementInCurrency(state, action.payload);
     },
     decrement: (state, action: PayloadAction<number>) => {
-      state.TotalPriceUAH -= action.payload;
+      DecrementInCurrency(state, action.payload);
     },
     setCurrency: (state, action: PayloadAction<string>) => {
       state.currency = action.payload;
