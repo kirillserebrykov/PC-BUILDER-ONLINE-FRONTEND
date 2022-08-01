@@ -4,7 +4,7 @@ import "antd/dist/antd.css";
 import type * as CSS from "csstype";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { RootState } from "../../../redux/store";
-import { divideTotalPrice, multiplyTotalPrice, setCurrency } from "../../../redux/TotalPriceSlice";
+import { setCurrency } from "../../../redux/TotalPriceSlice";
 import { CurrencyContext } from "../../../context/CurrencyContext";
 const styleBtn: CSS.Properties = {
   width: "100%",

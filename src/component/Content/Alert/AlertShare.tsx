@@ -1,35 +1,37 @@
 import React, { FC } from "react";
 import { Alert } from "antd";
-import "./Modal.css";
 import type * as CSS from "csstype";
 import { RootState } from "../../../redux/store";
 import { useAppSelector } from "../../../redux/hooks";
-interface IModalShareComponent {
+import { INamesComponents } from "../../../redux/typeAndInterfaceСomponentSlice/reduxInterface";
+
+interface IAlertShareComponent {
   isVisibility?: boolean;
   setVisibility: (value: boolean) => void;
 }
+
+const creatorUrl = (state: Array<INamesComponents>) => {
+  return state.map((el: { name: string; value: string }) => {
+    resultURL = `${resultURL}#${el.name}=${el.value}`;
+    return []
+  });
+};
+
 let resultURL: string = "";
 
-const ModalShareComponent: FC<IModalShareComponent> = ({
+const AlertShareComponent: FC<IAlertShareComponent> = ({
   isVisibility,
   setVisibility,
-}: IModalShareComponent): JSX.Element => {
-  const СomponentsReduxState = useAppSelector(
-    (state: RootState) => state.СomponentsSlice.Сomponents
+}: IAlertShareComponent): JSX.Element => {
+  const ComponentsReduxState = useAppSelector(
+    (state: RootState) => state.ComponentsSlice.Components
   );
 
   resultURL = `${window.location.href}#components`;
-
-  isVisibility &&
-    СomponentsReduxState.map((el: { name: string; value: string }) => {
-      resultURL = `${resultURL}#${el.name}=${el.value}`;
-    });
-
+  isVisibility && creatorUrl(ComponentsReduxState);
   navigator.clipboard.writeText(resultURL);
   resultURL = `${window.location.href}#components`;
-  const onCloseAlert = () => {
-    setVisibility(false);
-  };
+  const onCloseAlert = () => setVisibility(false);
 
   return (
     <>
@@ -47,7 +49,7 @@ const ModalShareComponent: FC<IModalShareComponent> = ({
   );
 };
 
-export default ModalShareComponent;
+export default AlertShareComponent;
 const AlertStyle: CSS.Properties = {
   position: "fixed",
   right: "10px",

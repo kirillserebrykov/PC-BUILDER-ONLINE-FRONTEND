@@ -1,4 +1,4 @@
-import { INamesСomponents } from "../redux/typeAndInterfaceСomponentSlice/reduxInterface";
+import { INamesComponents } from "../redux/typeAndInterfaceСomponentSlice/reduxInterface";
 
 export const loadState = () => {
   try {
@@ -23,13 +23,14 @@ export const saveState = (state: any) => {
   }
 };
 const StateMap = (
-  state: Array<INamesСomponents>,
+  state: Array<INamesComponents>,
   component: string,
   type: string,
   value: string = ""
 ) => {
   
-  return state.map((el: INamesСomponents, i: number) => {
+  // eslint-disable-next-line array-callback-return
+  return state.map((el: INamesComponents, i: number) => {
     if (el.name === component) {
       if (type === "delete") {
         state.splice(i, 1);

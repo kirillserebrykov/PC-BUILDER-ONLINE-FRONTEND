@@ -4,20 +4,30 @@ import { useAppDispatch } from "../../../redux/hooks";
 import { ModalContext } from "../../../context/ModalContext";
 import { addСomponent, renameСomponent } from "../../../redux/СomponentSlice";
 import ModalComponent from "./Modal";
-import ModalShareComponent from "./ModalShare";
+import AlertShareComponent from "../Alert/AlertShare";
 
 const ModalComponentContainer: FC = () => {
   const ModalVisibility = useContext(ModalContext);
   const dispatch = useAppDispatch();
+  const actionsHandler = (value: string, type: string) => {
+    if (type === "add") dispatch(addСomponent(value));
+    else if (type === "rename") {
+      ModalVisibility?.renameComponent &&
+        dispatch(
+          renameСomponent({
+            component: ModalVisibility?.renameComponent,
+            value,
+          })
+        );
+    }
+  };
 
   if (ModalVisibility?.typeModal === "add") {
     return (
       <ModalComponent
         isVisibility={ModalVisibility?.isVisibility}
         setVisibility={(value) => ModalVisibility?.setVisibility(value)}
-        ComponentHandler={(value) => {
-          dispatch(addСomponent(value));
-        }}
+        ComponentHandler={(value) => actionsHandler(value, "add")}
         modalTitle="Add new component"
       />
     );
@@ -26,20 +36,13 @@ const ModalComponentContainer: FC = () => {
       <ModalComponent
         isVisibility={ModalVisibility?.isVisibility}
         setVisibility={(value) => ModalVisibility?.setVisibility(value)}
-        ComponentHandler={(value) => {
-          dispatch(
-            renameСomponent({
-              component: ModalVisibility?.renameComponent,
-              value,
-            })
-          );
-        }}
+        ComponentHandler={(value) => actionsHandler(value, "rename")}
         modalTitle="Rename new component"
       />
     );
   } else
     return (
-      <ModalShareComponent
+      <AlertShareComponent
         isVisibility={ModalVisibility?.isVisibility}
         setVisibility={(value) => ModalVisibility?.setVisibility(value)}
       />

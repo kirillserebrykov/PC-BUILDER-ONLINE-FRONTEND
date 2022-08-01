@@ -1,11 +1,11 @@
 import { configureStore,  } from '@reduxjs/toolkit'
 import { GetDataApi } from './api/getData'
 import TotalPriceSlice from './TotalPriceSlice'
-import СomponentsSlice from './СomponentSlice'
+import ComponentsSlice from './СomponentSlice'
 
 const store = configureStore({
   reducer: {
-    СomponentsSlice: СomponentsSlice,
+    ComponentsSlice: ComponentsSlice,
     TotalPriceSlice: TotalPriceSlice,
     [GetDataApi.reducerPath]: GetDataApi.reducer
   },

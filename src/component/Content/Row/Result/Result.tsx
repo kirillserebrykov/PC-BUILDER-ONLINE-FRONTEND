@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from "react";
 import "antd/dist/antd.css";
-import { Typography, Card, Space, Divider } from "antd";
+import { Typography, Space, Divider } from "antd";
 import type * as CSS from "csstype";
 import {
   IResultComponent,
@@ -8,27 +8,29 @@ import {
   I_ImgComponent,
 } from "../../../../types/globalTypes";
 import { useAppDispatch } from "../../../../redux/hooks";
-import { decrement, increment, setCurrency } from "../../../../redux/TotalPriceSlice";
-
+import {
+  decrement,
+  increment,
+  setCurrency,
+} from "../../../../redux/TotalPriceSlice";
 
 const TitleComponent: FC<ITitleComponent> = ({
   title,
   name,
   price,
-  url
+  url,
 }: ITitleComponent) => {
-  
   return (
     <>
-    
       <Divider orientation="left">
-       <span>{name}</span>
+        <span>{name}</span>
         <span style={priceStyle}>{price}</span>
       </Divider>
-      <Typography.Title level={5} style={{ margin: 0, paddingLeft:"60px"}}>
-      <a target="_blank" href={url}>{title}</a> 
+      <Typography.Title level={5} style={{ margin: 0, paddingLeft: "60px" }}>
+        <a target="_blank" href={url} rel="noreferrer">
+          {title}
+        </a>
       </Typography.Title>
-     
     </>
   );
 };
@@ -58,17 +60,17 @@ const ResultComponent: FC<IResultComponent> = ({
 }: IResultComponent) => {
   const { price, img, title, currency } = data;
   const dispatch = useAppDispatch();
-  console.log(data)
+
   useEffect(() => {
     dispatch(setCurrency(currency));
     dispatch(increment(price));
   }, [currency, dispatch, price]);
 
   useEffect(() => {
-    return () =>{
+    return () => {
       data && dispatch(decrement(price));
-    }
-  }, [])
+    };
+  }, [data, dispatch, price]);
 
   return (
     <>
@@ -76,9 +78,14 @@ const ResultComponent: FC<IResultComponent> = ({
       <Space
         direction="vertical"
         size="middle"
-        style={{ display: "flex", width: "100%", rowGap: 0,  }}
+        style={{ display: "flex", width: "100%", rowGap: 0 }}
       >
-        <TitleComponent title={title} url={url} name={name} price={price + currency} />
+        <TitleComponent
+          title={title}
+          url={url}
+          name={name}
+          price={price + currency}
+        />
       </Space>
     </>
   );
@@ -86,9 +93,9 @@ const ResultComponent: FC<IResultComponent> = ({
 
 export default ResultComponent;
 const priceStyle: CSS.Properties = {
-    minWidth: "100px",
-    position: "absolute",
-    right: "30px",
-    background: "#fff",
-    zIndex: "10",
-  };
+  minWidth: "100px",
+  position: "absolute",
+  right: "30px",
+  background: "#fff",
+  zIndex: "10",
+};

@@ -1,10 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type {
-  IСomponentsState,
+  IComponentsState,
   IRenameActions,
-  INamesСomponents,
-  INamesСomponentsForSetState,
+  INamesComponents,
 } from "./typeAndInterfaceСomponentSlice/reduxInterface";
 import {
   ComponentStateActions,
@@ -12,8 +11,8 @@ import {
   saveState,
 } from "../localStorage/localStorage";
 
-const initialState: IСomponentsState = {
-  Сomponents: [
+const initialState: IComponentsState = {
+  Components: [
     {
       name: "CPU",
       value: "",
@@ -50,87 +49,92 @@ const initialState: IСomponentsState = {
 };
 
 const ComponentHandler = (
-  Сomponents: Array<INamesСomponents>,
+  Components: Array<INamesComponents>,
   actionPayload: string,
   type: string,
   value: string = ""
 ) => {
-  return Сomponents.map((el, i) => {
+  // eslint-disable-next-line array-callback-return
+  return Components.map((el, i) => {
     if (el.name === actionPayload) {
-      if (type === "delete") return Сomponents.splice(i, 1);
+      if (type === "delete") return Components.splice(i, 1);
       if (type === "rename") {
-        Сomponents[i].name = value;
+        Components[i].name = value;
       }
       if (type === "changeValue") {
-        Сomponents[i].value = value;
+        Components[i].value = value;
       }
     }
   });
 };
 
-export const СomponentsSlice = createSlice({
+export const ComponentsSlice = createSlice({
   name: "Сomponent",
   initialState,
   reducers: {
     addСomponent: (state, action: PayloadAction<string>) => {
       if (loadState()) {
-        state.Сomponents = loadState();
-        state.Сomponents.push({ name: action.payload, value: "" });
-        saveState(state.Сomponents);
+        state.Components = loadState();
+        state.Components.push({ name: action.payload, value: "" });
+        saveState(state.Components);
       } else {
-        state.Сomponents.push({ name: action.payload, value: "" });
-        saveState(state.Сomponents);
+        state.Components.push({ name: action.payload, value: "" });
+        saveState(state.Components);
       }
     },
     setСomponent: (state) => {
-
-        state.Сomponents = loadState();
+      state.Components = loadState();
     },
     deleteСomponent: (state, action: PayloadAction<string>) => {
       if (loadState()) {
-        state.Сomponents = ComponentStateActions(action.payload, "delete");
+        state.Components = ComponentStateActions(action.payload, "delete");
       } else {
-        ComponentHandler(state.Сomponents, action.payload, "delete");
-        saveState(state.Сomponents);
+        ComponentHandler(state.Components, action.payload, "delete");
+        saveState(state.Components);
       }
     },
     renameСomponent: (state, action: PayloadAction<IRenameActions>) => {
       if (loadState()) {
-        state.Сomponents = ComponentStateActions(
+        state.Components = ComponentStateActions(
           action.payload.component,
           "rename",
           action.payload.value
         );
       } else {
         ComponentHandler(
-          state.Сomponents,
+          state.Components,
           action.payload.component,
           "rename",
           action.payload.value
         );
-        saveState(state.Сomponents);
+        saveState(state.Components);
       }
     },
     valueInputChange: (state, action: PayloadAction<IRenameActions>) => {
       if (loadState()) {
-        state.Сomponents = ComponentStateActions(
+        state.Components = ComponentStateActions(
           action.payload.component,
           "changeValue",
           action.payload.value
         );
-      }else {
-      ComponentHandler(
-        state.Сomponents,
-        action.payload.component,
-        "changeValue",
-        action.payload.value
-      );
-      saveState(state.Сomponents);
+      } else {
+        ComponentHandler(
+          state.Components,
+          action.payload.component,
+          "changeValue",
+          action.payload.value
+        );
+        saveState(state.Components);
       }
     },
   },
 });
 
-export const { addСomponent, deleteСomponent, renameСomponent, valueInputChange, setСomponent } =
-  СomponentsSlice.actions;
-export default СomponentsSlice.reducer;
+export const {
+  addСomponent,
+  deleteСomponent,
+  renameСomponent,
+  valueInputChange,
+  setСomponent,
+} = ComponentsSlice.actions;
+export default ComponentsSlice.reducer;

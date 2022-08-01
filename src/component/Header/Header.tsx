@@ -1,14 +1,13 @@
 import React, { FC } from "react";
 import "antd/dist/antd.css";
-import { Typography } from "antd";
 import "./Header.css";
 import type * as CSS from "csstype";
-import LOGO from '../../assets/LOGO.svg';
-const { Title } = Typography;
+import LOGO from "../../assets/LOGO.svg";
+
 
 const HeaderComponent: FC = () => (
   <div className="wrapper-header-text">
-    <img width={150} src={LOGO}  style={titleStyle}/>
+    <img width={150} src={LOGO} style={titleStyle} alt="logo" />
     <a className="paragraph-text" href="https://www.standwithukraine.how/">
       <img
         width={20}

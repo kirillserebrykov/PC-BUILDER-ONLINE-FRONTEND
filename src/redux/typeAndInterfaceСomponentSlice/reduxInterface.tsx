@@ -1,5 +1,5 @@
 
-export interface INamesСomponents {
+export interface INamesComponents {
   name: string
   value:string
 }
@@ -9,8 +9,8 @@ export interface INamesСomponentsForSetState {
 }
 
 
-export interface IСomponentsState {
-  Сomponents: Array<INamesСomponents>; 
+export interface IComponentsState {
+  Components: Array<INamesComponents>; 
 }
 
 export interface IRenameActions {

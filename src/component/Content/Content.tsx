@@ -10,10 +10,10 @@ import { useLocation } from "react-router-dom";
 import { loadState } from "../../localStorage/localStorage";
 import { setСomponent } from "../../redux/СomponentSlice";
 import { ModalContext } from "../../context/ModalContext";
+import { INamesComponents } from "../../redux/typeAndInterfaceСomponentSlice/reduxInterface";
 
-
-const Сomponents = (state: any) => {
-  return state.map((el: any, i: { toString: () => any }) => (
+const Components = (state: Array<INamesComponents>) => {
+  return state.map((el: INamesComponents, i: { toString: () => any }) => (
     <ColumComponent
       key={i.toString() + el.name}
       name={el.name}
@@ -22,40 +22,37 @@ const Сomponents = (state: any) => {
   ));
 };
 
- export const ComponentsUrl = (hash:string) =>{
- return  hash
-  .split("#")
-  .filter((el) => el !== "")
-  .map((el) => {
-    return {
-      name: decodeURI(el.split("=")[0]),
-      value: el.split("=")[1],
-    };
-  });
-}
-
+export const ComponentsUrl = (hash: string) => {
+  return hash
+    .split("#")
+    .filter((el) => el !== "")
+    .map((el) => {
+      return {
+        name: decodeURI(el.split("=")[0]),
+        value: el.split("=")[1],
+      };
+    });
+};
 
 const ContentComponent: FC = (): JSX.Element => {
   const { hash } = useLocation();
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
   const ShareMode = useContext(ModalContext);
-  const СomponentsReduxState = useAppSelector(
-    (state: RootState) => state.СomponentsSlice.Сomponents
+  const ComponentsReduxState = useAppSelector(
+    (state: RootState) => state.ComponentsSlice.Components
   );
-    useEffect(() =>{
-      if (loadState()) {
-        dispatch(setСomponent()) 
-      } 
-    }, [ ])
+
+  useEffect(() => {
+    loadState() && dispatch(setСomponent());
+  }, [dispatch]);
+
   const ComponentsChecker = () => {
     if (hash) {
-      ShareMode?.setShareMode(true)
-      return Сomponents(ComponentsUrl(hash))
-    }
-    else if (loadState()) return Сomponents(loadState()) 
-    else return Сomponents(СomponentsReduxState)
+      ShareMode?.setShareMode(true);
+      return Components(ComponentsUrl(hash));
+    } else if (loadState()) return Components(loadState());
+    else return Components(ComponentsReduxState);
   };
-
 
   return (
     <div className="wrapper-content">
@@ -68,4 +65,3 @@ const ContentComponent: FC = (): JSX.Element => {
 };
 
 export default ContentComponent;
-

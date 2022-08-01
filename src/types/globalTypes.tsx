@@ -7,8 +7,6 @@ export interface IColumPropsName {
   value: string
 }
 
-
-
 export interface IInputComponent {
   name: string;
   defaultValue:string;

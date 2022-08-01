@@ -14,7 +14,6 @@ const MenuComponent: FC<IPropsName> = ({ name }: IPropsName) => {
     ModalVisibility?.setVisibility(true);
     ModalVisibility?.setTypeModal("rename");
   };
-  
 
   return (
     <Menu
@@ -34,7 +33,7 @@ const MenuComponent: FC<IPropsName> = ({ name }: IPropsName) => {
             <button
               className="resetStyle"
               onClick={() => {
-                  dispatch(deleteСomponent(name))
+                dispatch(deleteСomponent(name));
               }}
             >
               Delete

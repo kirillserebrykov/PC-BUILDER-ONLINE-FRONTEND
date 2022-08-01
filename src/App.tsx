@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useState } from "react";
 import { Layout } from "antd";
 import ContentComponent from "./component/Content/Content";
 import HeaderComponent from "./component/Header/Header";
@@ -36,7 +36,7 @@ const App: FC = () => {
         <Content style={contentStyle}>
           <ContentComponent />
         </Content>
-        <Footer style={footeStyle}>
+        <Footer style={footerStyle}>
           <FooterComponent />
         </Footer>
       </ModalContext.Provider>
@@ -54,7 +54,7 @@ const headerStyle: CSS.Properties = {
 };
 const contentStyle: CSS.Properties = { backgroundColor: "#ffff" };
 
-const footeStyle: CSS.Properties = {
+const footerStyle: CSS.Properties = {
   width: "100%",
   height: "50px",
   position: "fixed",
