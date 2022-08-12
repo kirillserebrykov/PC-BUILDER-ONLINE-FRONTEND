@@ -8,6 +8,8 @@
     width: 100%;
 }
 
+
+
 .ant-input:focus {
     border-color: #364F6B;
     outline: 0;
@@ -18,4 +20,19 @@
     border-color: 2px solid #364F6B;
     outline: 0;
     
+}
+
+.input-group{
+    display: flex !important;
+    flex-direction: row !important;
+}
+
+
+@media screen and (max-width: 700px) {
+    .input-group{
+        display: flex !important;
+        flex-direction: column !important;
+        
+    }
+   
 }

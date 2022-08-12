@@ -1,20 +1,17 @@
-import React, { FC, useContext, useEffect, useState } from "react";
+import React, { FC, useContext, useState } from "react";
 import { Col } from "antd";
-import { IColumPropsName, IPropsName } from "../../../types/globalTypes";
+import { IColumPropsName } from "../../../types/globalTypes";
 import type * as CSS from "csstype";
 import "antd/dist/antd.css";
 import InputComponent from "./Input/Input";
 import DropdownComponent from "./Dropdown/Dropdown";
 import ResultComponent from "./Result/Result";
 import { useGetDataComponentQuery } from "../../../redux/api/getData";
+import './Colum.css';
 import { ModalContext } from "../../../context/ModalContext";
 
 
-const ColStyle: CSS.Properties = {
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-};
+
 
 const ColumComponent: FC<IColumPropsName> = ({ name,  value = ""}: IColumPropsName) => {
   const [skip, setSkip] = useState<boolean>(true);
@@ -26,7 +23,7 @@ const ColumComponent: FC<IColumPropsName> = ({ name,  value = ""}: IColumPropsNa
   
   
   return (
-    <Col className="gutter-row" span={24} style={ColStyle}>
+    <Col  span={24} className="colum-wrapper">
       {!data ? (
         <>
           {!ShareMode?.shareMode &&  <DropdownComponent name={name}  />}

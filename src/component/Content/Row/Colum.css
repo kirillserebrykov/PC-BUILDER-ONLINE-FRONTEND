@@ -1,0 +1,17 @@
+
+ .colum-wrapper{
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center;
+    align-items: center ;
+
+}
+
+
+
+@media screen and (max-width: 700px) {
+    .colum-wrapper{
+        padding: 0 40px 0 40px;
+    }
+   
+}

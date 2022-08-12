@@ -13,6 +13,8 @@ import {
   increment,
   setCurrency,
 } from "../../../../redux/TotalPriceSlice";
+import  './Result.css'
+
 
 const TitleComponent: FC<ITitleComponent> = ({
   title,
@@ -26,7 +28,7 @@ const TitleComponent: FC<ITitleComponent> = ({
         <span>{name}</span>
         <span style={priceStyle}>{price}</span>
       </Divider>
-      <Typography.Title level={5} style={{ margin: 0, paddingLeft: "60px" }}>
+      <Typography.Title level={5} className="result-title">
         <a target="_blank" href={url} rel="noreferrer">
           {title}
         </a>
@@ -40,14 +42,8 @@ const ImgComponent: FC<I_ImgComponent> = ({ url }: I_ImgComponent) => {
     <>
       <img
         src={url}
-        alt=""
-        width={50}
-        style={{
-          position: "absolute",
-          left: "0px",
-          marginTop: "70px",
-          borderRadius: "10px",
-        }}
+        alt="img"
+        className="result-img"
       />
     </>
   );

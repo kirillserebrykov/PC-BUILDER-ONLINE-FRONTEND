@@ -14,3 +14,12 @@
   margin-left: -30px;
   cursor: pointer;
 }
+@media screen and (max-width: 700px) {
+  .menu-dropdown {
+    position: relative;
+    left: 0px;
+  }
+  .dropdown-span {
+    font-weight: 800;
+  }
+}

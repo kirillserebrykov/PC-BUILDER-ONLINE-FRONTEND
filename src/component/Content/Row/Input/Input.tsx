@@ -29,7 +29,7 @@ const InputComponent: FC<IInputComponent> = ({
   return (
     <div className="wrapper-input">
       <Divider orientation="left">{name}</Divider>
-      <Input.Group compact style={{ display: "flex" }}>
+      <Input.Group compact className="input-group">
         <Input
           onChange={(e) => handlerChange(e)}
           value={value}
@@ -40,12 +40,8 @@ const InputComponent: FC<IInputComponent> = ({
           loading={isFetching}
           type="primary"
           onClick={handlerSubmit}
-          style={{
-            background: "#364F6B",
-            borderColor: "#364F6B",
-            borderTopRightRadius: "10px",
-            borderBottomRightRadius: "10px",
-          }}
+          
+          className="button-input-submit"
         >
           Submit
         </Button>

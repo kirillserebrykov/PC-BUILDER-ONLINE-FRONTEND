@@ -29,7 +29,7 @@ const AlertShareComponent: FC<IAlertShareComponent> = ({
 
   resultURL = `${window.location.href}#components`;
   isVisibility && creatorUrl(ComponentsReduxState);
-  navigator.clipboard.writeText(resultURL);
+  isVisibility &&  navigator.clipboard.writeText(resultURL);
   resultURL = `${window.location.href}#components`;
   const onCloseAlert = () => setVisibility(false);
 
@@ -55,4 +55,5 @@ const AlertStyle: CSS.Properties = {
   right: "10px",
   bottom: "56px",
   borderRadius: "10px",
+  zIndex:"900000"
 };

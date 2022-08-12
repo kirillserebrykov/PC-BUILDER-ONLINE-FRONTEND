@@ -1,6 +1,6 @@
 import React, { FC, useContext, useState } from "react";
 import type * as CSS from "csstype";
-import { Button } from "antd";
+import { Button, Drawer } from "antd";
 import "antd/dist/antd.css";
 import "./Footer.css";
 import { ModalContext } from ".././../context/ModalContext";
@@ -12,6 +12,7 @@ import { CurrencyContext } from "../../context/CurrencyContext";
 import { useLocation } from "react-router-dom";
 import { saveState } from "../../localStorage/localStorage";
 import { ComponentsUrl } from "../Content/Content";
+import { ButtonsForMobile, ButtonsForPC } from "./ButtonsWrapper/ButtonsForPC";
 
 const FooterComponent: FC = () => {
   const ModalVisibility = useContext(ModalContext);
@@ -21,7 +22,7 @@ const FooterComponent: FC = () => {
   );
 
   const [currencyStatus, setCurrencyStatus] = useState("€");
-  
+
   const handleOpenAdd = () => {
     ModalVisibility?.setVisibility(true);
     ModalVisibility?.setTypeModal("add");
@@ -32,9 +33,9 @@ const FooterComponent: FC = () => {
     ModalVisibility?.setTypeModal("share");
   };
   const handleEditShareData = () => {
-    ModalVisibility?.setShareMode(false)
+    ModalVisibility?.setShareMode(false);
     saveState(ComponentsUrl(hash));
-    window.location.href = ""
+    window.location.href = "";
   };
 
   const currencyCheck = () => {
@@ -62,34 +63,23 @@ const FooterComponent: FC = () => {
           <CurrencyComponent />
         </CurrencyContext.Provider>
       </div>
-      {!ModalVisibility?.shareMode ? (
-        <>
-          <Button
-            onClick={handleOpenAdd}
-            ghost
-            type="primary"
-            style={buttonStyle}
-          >
-            <span>+</span>
-          </Button>
-          <Button
-            onClick={handleOpenShare}
-            ghost
-            type="primary"
-            style={buttonStyle}
-          >
-            <img width={20} src={Share} alt="Share" />
-          </Button>
-        </>
+      {window.innerWidth < 700 ? (
+        
+        <ButtonsForMobile
+          shareMode={ModalVisibility && ModalVisibility.shareMode}
+          handleOpenAdd={handleOpenAdd}
+          handleOpenShare={handleOpenShare}
+          Share={Share}
+          handleEditShareData={handleEditShareData}
+        />
       ) : (
-        <Button
-          onClick={handleEditShareData}
-          ghost
-          type="primary"
-          style={buttonStyle}
-        >
-          <span>Edit share data</span>
-        </Button>
+        <ButtonsForPC
+          shareMode={ModalVisibility && ModalVisibility.shareMode}
+          handleOpenAdd={handleOpenAdd}
+          handleOpenShare={handleOpenShare}
+          Share={Share}
+          handleEditShareData={handleEditShareData}
+        />
       )}
     </>
   );
@@ -98,15 +88,54 @@ const FooterComponent: FC = () => {
 export default FooterComponent;
 
 const buttonStyle: CSS.Properties = {
-  minWidth: "60px",
-  borderRadius: "20px",
+  minWidth: "100%",
   borderColor: "rgb(54, 79, 107)",
   color: "rgb(54, 79, 107)",
   fontFamily: "Source Sans Pro, sans-serif",
-  marginLeft: "10px",
+  marginTop: "20px",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
 };
 
+// const buttonStyle: CSS.Properties = {
+//   minWidth: "60px",
+//   borderRadius: "20px",
+//   borderColor: "rgb(54, 79, 107)",
+//   color: "rgb(54, 79, 107)",
+//   fontFamily: "Source Sans Pro, sans-serif",
+//   marginLeft: "10px",
+//   display: "flex",
+//   justifyContent: "center",
+//   alignItems: "center",
+// };
 
+// {!ModalVisibility?.shareMode ? (
+//   <>
+//     <Button
+//       onClick={handleOpenAdd}
+//       ghost
+//       type="primary"
+//       style={buttonStyle}
+//     >
+//       <span>+</span>
+//     </Button>
+//     <Button
+//       onClick={handleOpenShare}
+//       ghost
+//       type="primary"
+//       style={buttonStyle}
+//     >
+//       <img width={20} src={Share} alt="Share" />
+//     </Button>
+//   </>
+// ) : (
+//   <Button
+//     onClick={handleEditShareData}
+//     ghost
+//     type="primary"
+//     style={buttonStyle}
+//   >
+//     <span>Edit share data</span>
+//   </Button>
+// )}

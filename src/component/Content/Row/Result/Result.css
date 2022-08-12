@@ -1,0 +1,29 @@
+.result-title {
+    margin: 0;
+    padding-left: 60px;
+}
+.result-img {
+    width: 50px;
+    position: absolute;
+    left: 0px;
+    margin-top: 70px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+@media screen and (max-width: 700px) {
+    .result-title {
+        padding-left: 0;
+    }
+    .result-img {
+        position: relative;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
+    }
+}
