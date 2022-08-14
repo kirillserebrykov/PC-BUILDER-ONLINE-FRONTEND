@@ -22,26 +22,30 @@ const SelectCurrency = ({currency}: ISelectCurrency) => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const CurrencyStatus = useContext(CurrencyContext);
   const dispatch = useAppDispatch();
+  
   const clickHandler = () => {
     dispatch(setCurrency(currency))
-    switch (currency as string) {
+    
+     switch (currency as string) {
       case "UAH":
       case "ГРН":
       case "₴":
-        CurrencyStatus?.setCurrencyStatus("UAH") 
+           CurrencyStatus && CurrencyStatus.setCurrencyStatus("UAH") 
         break;
       case "USD":
       case "$":
-        CurrencyStatus?.setCurrencyStatus("USD")  
+        CurrencyStatus && CurrencyStatus.setCurrencyStatus("USD")  
         break;
-      case "EURO":
+      case "EUR":
       case "€":
-        CurrencyStatus?.setCurrencyStatus("EUR")
+        CurrencyStatus && CurrencyStatus.setCurrencyStatus("EUR")
         break;
+        
     }
-   
+    
     
   }
+  console.log(CurrencyStatus)
   return (
     <button onClick={clickHandler} style={styleBtn} className="">
       {currency}
@@ -76,8 +80,9 @@ const CurrencyComponent: FC = () => {
   const currency = useAppSelector(
     (state: RootState) => state.TotalPriceSlice.currency
   );
-
+ 
   return (
+    
     <Dropdown overlay={<MenuComponent/>} placement="top">
       <span>{currency === "ГРН" ? "₴" : currency}</span>
     </Dropdown>

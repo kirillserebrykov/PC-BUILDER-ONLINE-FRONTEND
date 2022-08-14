@@ -1,11 +1,8 @@
-import React, { FC, useContext, useState } from "react";
+import React, { FC, useContext, useEffect, useState } from "react";
 import type * as CSS from "csstype";
-import { Button, Drawer } from "antd";
 import "antd/dist/antd.css";
 import "./Footer.css";
 import { ModalContext } from ".././../context/ModalContext";
-import { useAppSelector } from "../../redux/hooks";
-import { RootState } from "../../redux/store";
 import CurrencyComponent from "./Currency/Currency";
 import Share from "../../assets/share.svg";
 import { CurrencyContext } from "../../context/CurrencyContext";
@@ -13,16 +10,22 @@ import { useLocation } from "react-router-dom";
 import { saveState } from "../../localStorage/localStorage";
 import { ComponentsUrl } from "../Content/Content";
 import { ButtonsForMobile, ButtonsForPC } from "./ButtonsWrapper/ButtonsForPC";
+import PriceComponent from "./Price/Price";
+import { useAppSelector } from "../../redux/hooks";
+import { RootState } from "../../redux/store";
 
 const FooterComponent: FC = () => {
   const ModalVisibility = useContext(ModalContext);
   const { hash } = useLocation();
+
   const TotalPrice = useAppSelector(
     (state: RootState) => state.TotalPriceSlice
   );
-
-  const [currencyStatus, setCurrencyStatus] = useState("€");
-
+  
+ 
+  const [currencyStatus, setCurrencyStatus] = useState(TotalPrice.currency);
+  useEffect(() => setCurrencyStatus(TotalPrice.currency), [TotalPrice.currency] )
+  
   const handleOpenAdd = () => {
     ModalVisibility?.setVisibility(true);
     ModalVisibility?.setTypeModal("add");
@@ -38,31 +41,20 @@ const FooterComponent: FC = () => {
     window.location.href = "";
   };
 
-  const currencyCheck = () => {
-    switch (currencyStatus as string) {
-      case "UAH":
-      case "ГРН":
-      case "$":
-        return TotalPrice.TotalPriceUAH.toFixed(2);
-      case "USD":
-      case "₴":
-        return TotalPrice.TotalPriceUSD.toFixed(2);
-      case "EUR":
-      case "€":
-        return TotalPrice.TotalPriceEURO.toFixed(2);
-    }
-  };
+ 
 
+  
+ 
   return (
     <>
+    <CurrencyContext.Provider value={{ currencyStatus, setCurrencyStatus }}>
       <div className="wrapper price">
-        <span>{currencyCheck()}</span>
+        <PriceComponent /> 
       </div>
       <div className="wrapper currency">
-        <CurrencyContext.Provider value={{ currencyStatus, setCurrencyStatus }}>
           <CurrencyComponent />
-        </CurrencyContext.Provider>
       </div>
+      </CurrencyContext.Provider>
       {window.innerWidth < 700 ? (
         
         <ButtonsForMobile

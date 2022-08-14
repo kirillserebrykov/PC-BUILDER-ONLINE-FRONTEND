@@ -20,10 +20,12 @@ const InputComponent: FC<IInputComponent> = ({
     setValue(e.target.value);
   const dispatch = useAppDispatch()
   const handlerSubmit =  () => {
+    if(value){
       setSkip(false);
       dispatch(valueInputChange({ component: name, value: value }))
       setUrl(value);
       refetch()
+    }
   };
 
   return (
