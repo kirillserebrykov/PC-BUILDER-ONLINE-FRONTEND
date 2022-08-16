@@ -1,3 +1,3 @@
 export interface ComonentsResponse {
-    URL: string
-  }
+	URL: string
+}

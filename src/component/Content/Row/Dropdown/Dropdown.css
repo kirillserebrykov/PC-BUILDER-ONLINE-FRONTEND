@@ -1,25 +1,25 @@
 .resetStyle {
-  background: none;
-  border: none;
-  width: 100%;
+	background: none;
+	border: none;
+	width: 100%;
 }
 .menu-dropdown {
-  position: relative;
-  left: -60px;
+	position: relative;
+	left: -60px;
 }
 .dropdown-span {
-  font-size: 15px;
-  margin-top: 50px;
-  padding-right: 20px;
-  margin-left: -30px;
-  cursor: pointer;
+	font-size: 15px;
+	margin-top: 50px;
+	padding-right: 20px;
+	margin-left: -30px;
+	cursor: pointer;
 }
 @media screen and (max-width: 700px) {
-  .menu-dropdown {
-    position: relative;
-    left: 0px;
-  }
-  .dropdown-span {
-    font-weight: 800;
-  }
+	.menu-dropdown {
+		position: relative;
+		left: 0px;
+	}
+	.dropdown-span {
+		font-weight: 800;
+	}
 }

@@ -1,38 +1,32 @@
 .ant-input:hover {
-    border-color: #364F6B;
-    outline: 0;   
+	border-color: #364f6b;
+	outline: 0;
 }
-.wrapper-input{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+.wrapper-input {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
 }
-
-
 
 .ant-input:focus {
-    border-color: #364F6B;
-    outline: 0;
-    -webkit-box-shadow: 0 0 0 2px #364f6b73;
-    box-shadow: 0 0 0 2px #364f6b4d;
+	border-color: #364f6b;
+	outline: 0;
+	-webkit-box-shadow: 0 0 0 2px #364f6b73;
+	box-shadow: 0 0 0 2px #364f6b4d;
 }
-.ant-input{
-    border-color: 2px solid #364F6B;
-    outline: 0;
-    
-}
-
-.input-group{
-    display: flex !important;
-    flex-direction: row !important;
+.ant-input {
+	border-color: 2px solid #364f6b;
+	outline: 0;
 }
 
+.input-group {
+	display: flex !important;
+	flex-direction: row !important;
+}
 
 @media screen and (max-width: 700px) {
-    .input-group{
-        display: flex !important;
-        flex-direction: column !important;
-        
-    }
-   
+	.input-group {
+		display: flex !important;
+		flex-direction: column !important;
+	}
 }

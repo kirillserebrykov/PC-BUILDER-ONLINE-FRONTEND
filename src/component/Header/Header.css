@@ -1,16 +1,15 @@
-.wrapper-header-text{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  z-index: 2;
-
+.wrapper-header-text {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	z-index: 2;
 }
-.paragraph-text{
-    margin-top: -20px;
+.paragraph-text {
+	margin-top: -20px;
 }
-.paragraph-text span{
-  font-size: 15px;
-  font-weight: 300;
+.paragraph-text span {
+	font-size: 15px;
+	font-weight: 300;
 }
